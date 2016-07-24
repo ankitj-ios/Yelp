@@ -26,8 +26,6 @@ class YelpBusiness : CustomStringConvertible {
     }
     
     static func getBusinesses(yelpFilterSettings : YelpFilterSettings, completion: ([YelpBusiness]) -> Void) -> Void {
-//        YelpClient.sharedInstance.getBusinesses(yelpFilterSettings
-//            , successCallBack: <#T##(NSDictionary) -> Void#>)
         YelpClient.sharedInstance.getBusinesses(yelpFilterSettings) { (response) in
             // adapt response to businesses array and call completion
             let businesses : [YelpBusiness] = self.adaptResponse(response)

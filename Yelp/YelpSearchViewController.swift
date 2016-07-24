@@ -16,6 +16,8 @@ class YelpSearchViewController: UIViewController {
     
     var filterSettings : YelpFilterSettings = YelpFilterSettings()
     
+    var searchBar : UISearchBar!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -25,16 +27,32 @@ class YelpSearchViewController: UIViewController {
         yelpBusinessTableView.rowHeight = UITableViewAutomaticDimension
         yelpBusinessTableView.estimatedRowHeight = 120
         
+        
+        // Initialize the UISearchBar
+        searchBar = UISearchBar()
+        searchBar.delegate = self
+        
+        // Add SearchBar to the NavigationBar
+        searchBar.sizeToFit()
+        navigationItem.titleView = searchBar
+
         print("search view loaded ... ")
+        
+        fetchBusinesses(filterSettings)
+    }
+    
+    
+    override func didReceiveMemoryWarning() {
+        super.didReceiveMemoryWarning()
+    }
+    
+    
+    func fetchBusinesses(filterSettings : YelpFilterSettings) -> Void {
         YelpBusiness.getBusinesses(filterSettings) { (yelpBusinesses) in
             print("got businesses on search view ... ")
             self.businesses = yelpBusinesses
             self.yelpBusinessTableView.reloadData()
         }
-    }
-    
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
     }
 }
 
@@ -70,5 +88,27 @@ extension YelpSearchViewController : UITableViewDataSource, UITableViewDelegate 
         }) { (ratingsImageRequest, ratingsImageResponse, error) in
             print(error)
         }
+    }
+}
+
+extension YelpSearchViewController : UISearchBarDelegate {
+    
+    func searchBarTextDidBeginEditing(searchBar: UISearchBar) {
+        searchBar.setShowsCancelButton(true, animated: false)
+    }
+    
+    func searchBarTextDidEndEditing(searchBar: UISearchBar) {
+        searchBar.setShowsCancelButton(false, animated: false)
+    }
+    
+    func searchBarCancelButtonClicked(searchBar: UISearchBar) {
+        searchBar.text = ""
+        searchBar.resignFirstResponder()
+    }
+    
+    func searchBarSearchButtonClicked(searchBar: UISearchBar) {
+        filterSettings.searchTerm = searchBar.text
+        fetchBusinesses(filterSettings)
+        searchBar.resignFirstResponder()
     }
 }

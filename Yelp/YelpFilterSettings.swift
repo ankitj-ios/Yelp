@@ -10,11 +10,13 @@ import Foundation
 
 class YelpFilterSettings: CustomStringConvertible {
     
+    var searchTerm : String?
+    
     init() {
-        
+        searchTerm = ""
     }
     
     var description: String {
-        return ""
+        return searchTerm!
     }
 }

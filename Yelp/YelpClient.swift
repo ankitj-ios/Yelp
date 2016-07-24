@@ -65,6 +65,7 @@ class YelpClient: BDBOAuth1RequestOperationManager {
     func getBusinesses(yelpFilterSettings : YelpFilterSettings,
                        successCallBack : (NSDictionary) -> Void) -> Void {
        let params = createParameters(yelpFilterSettings)
+        print(yelpFilterSettings)
        self.GET("search", parameters: params,
                 success: { (requestOperation, responseObject) in
                     print("successfully called yelp api ... ")
@@ -78,7 +79,7 @@ class YelpClient: BDBOAuth1RequestOperationManager {
     
     func createParameters(yelpFilterSettings : YelpFilterSettings) -> [String : String] {
         var parameters : [String : String] = [:]
-        parameters["term"] = "thai"
+        parameters["term"] = yelpFilterSettings.searchTerm!
         parameters["location"] = "sf"
         return parameters
     }
