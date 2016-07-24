@@ -54,6 +54,22 @@ class YelpSearchViewController: UIViewController {
             self.yelpBusinessTableView.reloadData()
         }
     }
+    
+//    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+//        
+//        let navigationController = segue.destinationViewController as! UINavigationController
+//        let yelpFilterSettingsController = navigationController.topViewController as! YelpFilterSettingsViewController
+//        yelpFilterSettingsController.yelpFilterSettings = filterSettings
+//        yelpFilterSettingsController.delegate = self
+//    }
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        let navigationController = segue.destinationViewController as! UINavigationController
+        let yelpFilterSettingsController = navigationController.topViewController as! YelpSettingsViewController
+        yelpFilterSettingsController.yelpFilterSettings = filterSettings
+        yelpFilterSettingsController.delegate = self
+    }
+
 }
 
 extension YelpSearchViewController : UITableViewDataSource, UITableViewDelegate {
@@ -76,17 +92,21 @@ extension YelpSearchViewController : UITableViewDataSource, UITableViewDelegate 
         yelpBusinessCell.reviewCountLabel.text = String(business.reviewCount!) + " Reviews"
         yelpBusinessCell.distanceLabel.text = business.distance
         yelpBusinessCell.costCategoryLabel.text = business.costCatory
-        let businessImageRequest = NSURLRequest(URL: NSURL(string: business.businessImageUrl!)!)
-        let ratingsImageRequest = NSURLRequest(URL: NSURL(string: business.ratingsImageUrl!)!)
-        yelpBusinessCell.businessImageView.setImageWithURLRequest(businessImageRequest, placeholderImage: nil, success: { (businessImageRequest, businessImageResponse, businessImage) in
+        if let businessImageUrl = business.businessImageUrl {
+            let businessImageRequest = NSURLRequest(URL: NSURL(string: businessImageUrl)!)
+            yelpBusinessCell.businessImageView.setImageWithURLRequest(businessImageRequest, placeholderImage: nil, success: { (businessImageRequest, businessImageResponse, businessImage) in
                 yelpBusinessCell.businessImageView.image = businessImage
             }) { (businessImageRequest, businessImageResponse, error) in
                 print(error)
+            }
         }
-        yelpBusinessCell.ratingsImageView.setImageWithURLRequest(ratingsImageRequest, placeholderImage: nil, success: { (ratingsImageRequest, ratingsImageResponse, ratingsImage) in
-            yelpBusinessCell.ratingsImageView.image = ratingsImage
-        }) { (ratingsImageRequest, ratingsImageResponse, error) in
-            print(error)
+        if let ratingsImageUrl = business.ratingsImageUrl {
+            let ratingsImageRequest = NSURLRequest(URL: NSURL(string: ratingsImageUrl)!)
+            yelpBusinessCell.ratingsImageView.setImageWithURLRequest(ratingsImageRequest, placeholderImage: nil, success: { (ratingsImageRequest, ratingsImageResponse, ratingsImage) in
+                yelpBusinessCell.ratingsImageView.image = ratingsImage
+            }) { (ratingsImageRequest, ratingsImageResponse, error) in
+                print(error)
+            }
         }
     }
 }
@@ -110,5 +130,18 @@ extension YelpSearchViewController : UISearchBarDelegate {
         filterSettings.searchTerm = searchBar.text
         fetchBusinesses(filterSettings)
         searchBar.resignFirstResponder()
+    }
+}
+
+extension YelpSearchViewController : YelpFilterSettingsDelegate {
+    func onSearch(yelpFilterSettings: YelpFilterSettings) {
+        fetchBusinesses(yelpFilterSettings)
+    }
+}
+
+
+extension YelpSearchViewController : YelpSettingsDelegate {
+    func yelpSettingsSearch(yelpFilterSettings: YelpFilterSettings) {
+        fetchBusinesses(yelpFilterSettings)
     }
 }

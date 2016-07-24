@@ -8,12 +8,25 @@
 
 import UIKit
 
-class YelpFilterSettingsViewController: UIViewController {
+protocol YelpFilterSettingsDelegate : class {
+    func onSearch(yelpFilterSettings : YelpFilterSettings)
+}
 
+class YelpFilterSettingsViewController: UIViewController {
+    
+    weak var delegate : YelpFilterSettingsDelegate?
+    
+    var yelpFilterSettings : YelpFilterSettings!
     
     @IBAction func onSearchButtonClick(sender: AnyObject) {
+        updateYelpFilterSettings()
+        delegate?.onSearch(yelpFilterSettings)
         dismissViewControllerAnimated(true, completion: nil)
         print("search button clicked ... ")
+    }
+    
+    func updateYelpFilterSettings() {
+        yelpFilterSettings.sortMode = YelpSortMode.HighestRated
     }
     
     @IBAction func onCancelButtonClick(sender: AnyObject) {

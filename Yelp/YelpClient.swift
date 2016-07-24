@@ -67,20 +67,41 @@ class YelpClient: BDBOAuth1RequestOperationManager {
        let params = createParameters(yelpFilterSettings)
         print(yelpFilterSettings)
        self.GET("search", parameters: params,
-                success: { (requestOperation, responseObject) in
-                    print("successfully called yelp api ... ")
-                    successCallBack(responseObject as! NSDictionary)
-                },
-                failure: {
-                    (httpRequestOperation, error) -> Void in
-                    print(error)
-                })
+            success: { (requestOperation, responseObject) in
+                print("successfully called yelp api ... ")
+                successCallBack(responseObject as! NSDictionary)
+            },
+            failure: {
+                (httpRequestOperation, error) -> Void in
+                print(error)
+            })
     }
     
-    func createParameters(yelpFilterSettings : YelpFilterSettings) -> [String : String] {
-        var parameters : [String : String] = [:]
-        parameters["term"] = yelpFilterSettings.searchTerm!
-        parameters["location"] = "sf"
+    func createParameters(yelpFilterSettings : YelpFilterSettings) -> [String : AnyObject] {
+        var parameters : [String : AnyObject] = [:]
+
+//        parameters["location"] = "sf"
+        parameters["ll"] = "37.785771,-122.406165"
+        let term = yelpFilterSettings.searchTerm
+        let sort = yelpFilterSettings.sortMode
+        let categories = yelpFilterSettings.categories
+        let deals = yelpFilterSettings.deals
+        
+        parameters["term"] = term ?? ""
+        
+        if sort != nil {
+            parameters["sort"] = sort!.rawValue
+        }
+
+        if categories != nil && categories!.count > 0 {
+            parameters["category_filter"] = (categories!).joinWithSeparator(",")
+        }
+
+        if deals != nil {
+            parameters["deals_filter"] = deals!
+        }
+        
+        
         return parameters
     }
     

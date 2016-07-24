@@ -81,6 +81,14 @@ class YelpBusiness : CustomStringConvertible {
             categories = nil
         }
         
+        let distanceMeters = businessResponse["distance"] as? NSNumber
+        if distanceMeters != nil {
+            let milesPerMeter = 0.000621371
+            distance = String(format: "%.2f mi", milesPerMeter * distanceMeters!.doubleValue)
+        } else {
+            distance = nil
+        }
+        
         businessImageUrl = businessResponse["image_url"] as? String
         ratingsImageUrl = businessResponse["rating_img_url"] as? String
     }
