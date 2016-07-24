@@ -78,7 +78,7 @@ class YelpClient: BDBOAuth1RequestOperationManager {
     
     func createParameters(yelpFilterSettings : YelpFilterSettings) -> [String : String] {
         var parameters : [String : String] = [:]
-        parameters["term"] = "indian"
+        parameters["term"] = "thai"
         parameters["location"] = "sf"
         return parameters
     }

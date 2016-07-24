@@ -22,5 +22,11 @@ class YelpBusinessCell: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
+        
+        nameLabel.preferredMaxLayoutWidth = nameLabel.frame.size.width
     }
+
+//    override func layoutSubviews() {
+//        nameLabel.preferredMaxLayoutWidth = nameLabel.frame.size.width
+//    }
 }

@@ -48,7 +48,7 @@ class YelpBusiness : CustomStringConvertible {
         /*logic of init of Buisiness*/
         name = businessResponse["name"] as? String
         reviewCount = businessResponse["review_count"] as? Int
-        distance = "0.7 miles"
+        distance = "0.7 mi"
         costCatory = "$$"
         
         /* set address */

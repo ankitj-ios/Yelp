@@ -21,6 +21,10 @@ class YelpSearchViewController: UIViewController {
         
         yelpBusinessTableView.dataSource = self
         yelpBusinessTableView.delegate = self
+        
+        yelpBusinessTableView.rowHeight = UITableViewAutomaticDimension
+        yelpBusinessTableView.estimatedRowHeight = 120
+        
         print("search view loaded ... ")
         YelpBusiness.getBusinesses(filterSettings) { (yelpBusinesses) in
             print("got businesses on search view ... ")
@@ -51,9 +55,9 @@ extension YelpSearchViewController : UITableViewDataSource, UITableViewDelegate 
         yelpBusinessCell.nameLabel.text = business.name
         yelpBusinessCell.addressLabel.text = business.address
         yelpBusinessCell.categoryLabel.text = business.categories
-        yelpBusinessCell.reviewCountLabel.text = String(business.reviewCount)
-        yelpBusinessCell.distanceLabel.text = "0.7 miles"
-        yelpBusinessCell.costCategoryLabel.text = "$"
+        yelpBusinessCell.reviewCountLabel.text = String(business.reviewCount!) + " Reviews"
+        yelpBusinessCell.distanceLabel.text = business.distance
+        yelpBusinessCell.costCategoryLabel.text = business.costCatory
         let businessImageRequest = NSURLRequest(URL: NSURL(string: business.businessImageUrl!)!)
         let ratingsImageRequest = NSURLRequest(URL: NSURL(string: business.ratingsImageUrl!)!)
         yelpBusinessCell.businessImageView.setImageWithURLRequest(businessImageRequest, placeholderImage: nil, success: { (businessImageRequest, businessImageResponse, businessImage) in
