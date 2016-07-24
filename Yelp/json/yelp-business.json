@@ -1,0 +1,67 @@
+{
+  "is_claimed": false,
+  "rating": 4.5,
+  "mobile_url": "http://m.yelp.com/biz/hookers-sweet-treats-san-francisco?utm_campaign=yelp_api&utm_medium=api_v2_business&utm_source=vxKwwcR_NMQ7WaEiQBK_CA",
+  "rating_img_url": "https://s3-media2.fl.yelpcdn.com/assets/2/www/img/99493c12711e/ico/stars/v1/stars_4_half.png",
+  "review_count": 246,
+  "name": "Hooker's Sweet Treats",
+  "rating_img_url_small": "https://s3-media2.fl.yelpcdn.com/assets/2/www/img/a5221e66bc70/ico/stars/v1/stars_small_4_half.png",
+  "url": "http://www.yelp.com/biz/hookers-sweet-treats-san-francisco?utm_campaign=yelp_api&utm_medium=api_v2_business&utm_source=vxKwwcR_NMQ7WaEiQBK_CA",
+  "categories": [
+    [
+      "Chocolatiers & Shops",
+      "chocolate"
+    ],
+    [
+      "Coffee & Tea",
+      "coffee"
+    ]
+  ],
+  "reviews": [
+    {
+      "rating": 5,
+      "excerpt": "REVIEWER # 244\n\nYou would never know this place exist...well at least I didn't. It took a friend to tell me about this place and once he told me the name of...",
+      "time_created": 1466621103,
+      "rating_image_url": "https://s3-media1.fl.yelpcdn.com/assets/2/www/img/f1def11e4e79/ico/stars/v1/stars_5.png",
+      "rating_image_small_url": "https://s3-media1.fl.yelpcdn.com/assets/2/www/img/c7623205d5cd/ico/stars/v1/stars_small_5.png",
+      "user": {
+        "image_url": "http://s3-media4.fl.yelpcdn.com/photo/V9MgmEAlwUWpKmEUG1uegw/ms.jpg",
+        "id": "chG58EhXagCSvub2-a73RA",
+        "name": "Porsche C."
+      },
+      "rating_image_large_url": "https://s3-media3.fl.yelpcdn.com/assets/2/www/img/22affc4e6c38/ico/stars/v1/stars_large_5.png",
+      "id": "NHGTnrGy50r1DBKzJ0qwkA"
+    }
+  ],
+  "phone": "4154414628",
+  "snippet_text": "REVIEWER # 244\n\nYou would never know this place exist...well at least I didn't. It took a friend to tell me about this place and once he told me the name of...",
+  "image_url": "https://s3-media4.fl.yelpcdn.com/bphoto/izW5V7ghPnQSf6HCIxvS4Q/ms.jpg",
+  "snippet_image_url": "http://s3-media4.fl.yelpcdn.com/photo/V9MgmEAlwUWpKmEUG1uegw/ms.jpg",
+  "display_phone": "+1-415-441-4628",
+  "rating_img_url_large": "https://s3-media4.fl.yelpcdn.com/assets/2/www/img/9f83790ff7f6/ico/stars/v1/stars_large_4_half.png",
+  "id": "hookers-sweet-treats-san-francisco",
+  "is_closed": false,
+  "location": {
+    "cross_streets": "Ellis St & Ofarrell St",
+    "city": "San Francisco",
+    "display_address": [
+      "442 Hyde St",
+      "Tenderloin",
+      "San Francisco, CA 94109"
+    ],
+    "geo_accuracy": 8,
+    "neighborhoods": [
+      "Tenderloin"
+    ],
+    "postal_code": "94109",
+    "country_code": "US",
+    "address": [
+      "442 Hyde St"
+    ],
+    "coordinate": {
+      "latitude": 37.7852285,
+      "longitude": -122.4160527
+    },
+    "state_code": "CA"
+  }
+}
